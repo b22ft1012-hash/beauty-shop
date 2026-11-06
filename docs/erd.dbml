@@ -1,0 +1,64 @@
+// Bloom Beauty — dbdiagram.io-д хуулж оруулна
+
+Table profiles {
+  id uuid [pk, note: 'auth.users.id (1:1)']
+  full_name text
+  phone text
+  role text [default: 'user', note: 'user | admin']
+  created_at timestamptz
+}
+Table categories {
+  id bigint [pk, increment]
+  name text [unique, not null]
+  image_url text
+}
+Table brands {
+  id bigint [pk, increment]
+  name text [unique, not null]
+}
+Table products {
+  id bigint [pk, increment]
+  name text [not null]
+  subtitle text
+  description text
+  category_id bigint [not null, ref: > categories.id]
+  brand_id bigint [ref: > brands.id]
+  price int [not null]
+  old_price int
+  stock int [not null]
+  image_url text
+  tag text
+  is_active bool
+  created_at timestamptz
+}
+Table orders {
+  id bigint [pk, increment]
+  user_id uuid [not null, ref: > profiles.id]
+  status text [note: 'pending | paid | shipped | cancelled']
+  total int
+  phone text
+  address text
+  created_at timestamptz
+}
+Table order_items {
+  order_id bigint [pk, ref: > orders.id]
+  product_id bigint [pk, ref: > products.id]
+  quantity int
+  unit_price int
+  Note: 'N:M — orders ↔ products'
+}
+Table favorites {
+  user_id uuid [pk, ref: > profiles.id]
+  product_id bigint [pk, ref: > products.id]
+  created_at timestamptz
+  Note: 'N:M — profiles ↔ products'
+}
+Table reviews {
+  id bigint [pk, increment]
+  product_id bigint [not null, ref: > products.id]
+  user_id uuid [not null, ref: > profiles.id]
+  rating smallint [note: '1-5']
+  comment text
+  created_at timestamptz
+  indexes { (product_id, user_id) [unique] }
+}
