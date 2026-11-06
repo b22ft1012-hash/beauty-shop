@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* Bloom Beauty-ийн нэгдсэн өнгө, фонт (Tailwind theme) */
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-label: "DM Sans", ui-sans-serif, sans-serif;
+  --font-accent: Georgia, serif;
+
+  --color-ink: #262521;
+  --color-muted: #8b827e;
+  --color-line: #f1eeeb;
+  --color-cream: #fbf9f6;
+  --color-sand: #efe9e3;
+  --color-blush: #bf8277;
+  --color-blush-light: #f6e7e3;
+  --color-sage: #53684f;
+  --color-sage-light: #e6ebe3;
+  --color-sage-dark: #2f382d;
+  --color-gold: #d5a35d;
+}
+
+html { scroll-behavior: smooth; }
+body { @apply bg-white text-ink font-sans antialiased; }
+
+/* Дахин ашиглагдах товч, оролтын загварууд (Tailwind v4 @utility) */
+@utility btn { @apply inline-flex items-center justify-center gap-2 rounded px-5 py-3 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-60; }
+@utility btn-primary { @apply inline-flex items-center justify-center gap-2 rounded px-5 py-3 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-60 bg-sage-dark text-white hover:bg-sage; }
+@utility btn-outline { @apply inline-flex items-center justify-center gap-2 rounded px-5 py-3 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-60 border border-sage/40 text-sage hover:bg-sage-light; }
+@utility btn-danger { @apply inline-flex items-center justify-center gap-2 rounded px-5 py-3 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-60 bg-red-50 text-red-700 hover:bg-red-100; }
+@utility input { @apply w-full rounded border border-line bg-cream px-3.5 py-2.5 text-sm outline-none transition focus:border-sage focus:bg-white focus:ring-2 focus:ring-sage/20; }
+@utility label { @apply mb-1.5 block text-xs font-bold text-ink/80; }
+@utility eyebrow { @apply font-label text-[11px] font-bold tracking-[0.2em] text-blush; }
+@utility card { @apply rounded-lg border border-line bg-white; }
