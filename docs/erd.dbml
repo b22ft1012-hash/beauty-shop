@@ -1,4 +1,4 @@
-// Bloom Beauty — dbdiagram.io-д хуулж оруулна
+// Bloom Beauty
 
 Table profiles {
   id uuid [pk, note: 'auth.users.id (1:1)']
